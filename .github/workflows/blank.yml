@@ -8,13 +8,17 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment: producionti
+    env: 
+        TOKEN_KEY: "holamundo"
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      
       - name: printing username
-        run: echo " username is ${{ env.DOCKER_USERNAME }}"
+        run: echo " username is $TOKEN_KEY"
       - name: printng pass    
         run: echo "password is ${{ env.DOCKER_PASSWORD }}"
 
