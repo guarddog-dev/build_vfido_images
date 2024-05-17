@@ -18,7 +18,7 @@ jobs:
 
       
       - name: printing username
-        run: echo " username is $TOKEN_KEY"
+        run: echo " username is ${{ $TOKEN_KEY }}"
       - name: printng pass    
         run: echo "password is ${{ env.DOCKER_PASSWORD }}"
 
