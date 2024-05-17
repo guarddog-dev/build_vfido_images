@@ -2,6 +2,20 @@ name: Build and Push Docker Image
 
 on:
   workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: Who to greet
+        options: 
+        - monalisa
+        - cschleiden
+      message:
+        required: true
+      use-emoji:
+        type: boolean
+        description: Include 🎉🤣 emojis
+      environment:
+        type: environment
   
 jobs:
   build-and-push:
@@ -11,18 +25,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: printng token_x    
-        run: echo "token  is ${{ vars.MARCOTOKEN }}"
       
       - name: cloneing
         run: git clone https://oauth2:${{ vars.MARCOTOKEN }}@github.com/guarddog-dev/docker-fido.git
 
-      - name: checking ls
-        run: |
-          ls
-
-      
       - name: Build Docker image
         run: |
           cd docker-fido
