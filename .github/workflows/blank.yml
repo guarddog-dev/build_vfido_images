@@ -13,19 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Setup git
-        run: |
-          git config --global user.email $env:GIT_EMAIL
-          git config --global user.name $env:GIT_USER
-          git config --global credential.helper "!f() { echo \`"username=`${GIT_USER}`npassword=`${GIT_PASS}\`"; }; f"
-        shell: pwsh
-        env:
-          GIT_USER: "MarcoGuardDog"
-          GIT_EMAIL: "marco@guarddogsolutions.com"
-          GIT_PASS: "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"
-          
       - name: cloning repo
-        run: git clone https://github.com/guarddog-dev/docker-fido
+        run: git clone https://oauth2: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@github.com/guarddog-dev/docker-fido.git
         
       - name: Build Docker image
         run: docker build  -t guarddogai/base:1.1.2  .
