@@ -5,19 +5,21 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+  
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    environment: myenv
-
-     
         
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         
       - name: printng token_x    
-        run: echo "token  is ${{ env.MARCOTOKEN }}"
+        run: echo "token  is ${{ vars.MARCOTOKEN }}"
       
       
       - name: Build Docker image
