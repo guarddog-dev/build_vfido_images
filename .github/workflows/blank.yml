@@ -20,8 +20,15 @@ jobs:
       - name: cloneing
         run: git clone https://oauth2:${{ vars.MARCOTOKEN }}@github.com/guarddog-dev/docker-fido.git
 
+      - name: checking ls
+        run: |
+          ls
+
+      
       - name: Build Docker image
-        run: docker build  -t guarddogai/base:1.1.2  .
+        run: |
+          cd docker-fido
+          docker build  -t guarddogai/base:1.1.3  -f dockerfile_bases_alpine .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -30,5 +37,5 @@ jobs:
           password: ${{ vars.DOCKERPASS }}
 
       - name: Push Docker image
-        run: docker push guarddogai/base:1.1.2
+        run: docker push guarddogai/base:1.1.3
 
