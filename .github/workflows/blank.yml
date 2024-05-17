@@ -24,8 +24,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ env.docker_name }}
-          password: ${{ env.docker_pass }}
+          username: ${{ vars.DOKCERNAME }}
+          password: ${{ vars.DOCKERPASS }}
 
       - name: Push Docker image
         run: docker push guarddogai/base:1.1.2
