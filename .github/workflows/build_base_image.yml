@@ -23,6 +23,7 @@ jobs:
       - name: Build Docker image
         run: |
           cd docker-fido
+          git checkout builds
           docker build  -t guarddogai/base:${{ inputs.dockcer_tag }}  -f dockerfile_bases_alpine .
 
       - name: Log in to Docker Hub
