@@ -1,4 +1,4 @@
-name: Build base image for vfido
+name: Build base vfido image 
 
 on:
   workflow_dispatch:
