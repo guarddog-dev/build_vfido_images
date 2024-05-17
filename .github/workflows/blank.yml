@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: producionti
     env: 
-        TOKEN_KEY: "holamundo"
+        docker_name: "gdaidev"
+        docker_pass: "dckr_pat_7HSalPx7yLqDDurjM4GTUlt3GjE"
 
     steps:
       - name: Checkout repository
@@ -18,9 +19,9 @@ jobs:
 
       
       - name: printing username
-        run: echo " username is ${{ env.TOKEN_KEY }}"
+        run: echo " username is ${{ env.docker_name }}"
       - name: printng pass    
-        run: echo "password is ${{ env.DOCKER_PASSWORD }}"
+        run: echo "password is ${{ env.docker_pass }}"
 
       
     
@@ -30,8 +31,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ vars.DOCKER_USERNAME }}
-          password: ${{ vars.DOCKER_PASSWORD }}
+          username: ${{ env.docker_name }}
+          password: ${{ env.docker_pass }}
 
       - name: Push Docker image
         run: docker push guarddogai/base:1.1.2
