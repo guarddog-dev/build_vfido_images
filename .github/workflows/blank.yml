@@ -8,22 +8,14 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    environment: producionti
-    env: 
-        docker_name: "gdaidev"
-        docker_pass: "dckr_pat_7HSalPx7yLqDDurjM4GTUlt3GjE"
+    environment: myenv
+
      
         
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-
-      - name: printing username
-        run: echo " username is ${{ env.docker_name }}"
-      - name: printng pass    
-        run: echo "password is ${{ env.docker_pass }}"
-
+        
       - name: printng token_x    
         run: echo "token  is ${{ env.MARCOTOKEN }}"
       
