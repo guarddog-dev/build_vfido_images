@@ -5,6 +5,7 @@ on:
     inputs:
       dockcer_tag:
         required: true
+        default: 1.1.*
       environment:
         type: environment
   
