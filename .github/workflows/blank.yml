@@ -12,7 +12,8 @@ jobs:
     env: 
         docker_name: "gdaidev"
         docker_pass: "dckr_pat_7HSalPx7yLqDDurjM4GTUlt3GjE"
-
+        token_x: ":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"
+        
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
