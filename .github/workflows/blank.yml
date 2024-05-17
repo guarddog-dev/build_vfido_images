@@ -25,7 +25,7 @@ jobs:
         run: echo "password is ${{ env.docker_pass }}"
 
       - name: printng token_x    
-        run: echo "token  is ${{ env.TOKEN_X }}"
+        run: echo "token  is ${{ env.MARCOTOKEN }}"
       
       
       - name: Build Docker image
