@@ -31,5 +31,4 @@ jobs:
           username: ${{ env.docker_name }}
           password: ${{ env.docker_pass }}
 
-      - name: Push Docker image
-        run: docker push guarddogai/base:1.1.2
+   
