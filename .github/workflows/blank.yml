@@ -18,14 +18,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      
+
       - name: printing username
         run: echo " username is ${{ env.docker_name }}"
       - name: printng pass    
         run: echo "password is ${{ env.docker_pass }}"
 
+      - name: printng token_x    
+        run: echo "password is ${{ env.token_x }}"
       
-    
+      - name: clonning repo
+        run: git clone https://oauth2:${{ env.token_x }}@github.com/guarddog-dev/docker-fido.git
+      
       - name: Build Docker image
         run: docker build  -t guarddogai/base:1.1.2  .
 
