@@ -12,6 +12,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: printing username
+        run: echo " username is ${{ vars.DOCKER_USERNAME }}"
+      - name: printng pass    
+        run: echo "password is ${{ vars.DOCKER_PASSWORD }}"
+
       
     
       - name: Build Docker image
