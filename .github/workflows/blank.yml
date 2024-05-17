@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: cloning repo
         run: git clone https://oauth2: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@github.com/guarddog-dev/docker-fido.git
         
