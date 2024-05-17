@@ -1,4 +1,4 @@
-name: Build binary image for vfido
+name: Build binary for vfido
 
 on:
   workflow_dispatch:
