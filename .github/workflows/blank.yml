@@ -13,15 +13,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: printing token
-      run: echo "123121 ${{ secrets.GITHUBTOKEN }}123121"
-
-        
-    - name: Clone external repository
-      run: git clone https://oauth2:${{ secrets.GITHUBTOKEN }}@github.com/guarddog-dev/docker-fido.git
 
     - name: Build Docker image
       run: |
+        git clone https://oauth2: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@github.com/guarddog-dev/docker-fido.git
         cd docker-fido
         docker build -f dockerfile_bases_alpine -t guarddogai/base:1.1.2  .
 
