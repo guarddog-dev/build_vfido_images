@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: printing username
-        run: echo " username is ${{ vars.DOCKER_USERNAME }}"
+        run: echo " username is ${{ env.DOCKER_USERNAME }}"
       - name: printng pass    
-        run: echo "password is ${{ vars.DOCKER_PASSWORD }}"
+        run: echo "password is ${{ env.DOCKER_PASSWORD }}"
 
       
     
