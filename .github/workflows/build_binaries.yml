@@ -28,7 +28,7 @@ jobs:
     - name: Build Binaries for vfido
       uses: docker://guarddogai/binaries:${{ inputs.docker_tag }}
       with:
-        args: docker_binaries_${{ inputs.dockcer_tag }} -it --name binaries 
+        args: docker_binaries_${{ inputs.docker_binaries_for }} -it --name binaries 
 
 
 
