@@ -27,8 +27,6 @@ jobs:
       - name: printng token_x    
         run: echo "password is ${{ env.TOKEN_X }}"
       
-      - name: clonning repo
-        run: git clone https://oauth2:${{ env.TOKEN_X }}@github.com/guarddog-dev/docker-fido.git
       
       - name: Build Docker image
         run: docker build  -t guarddogai/base:1.1.2  .
