@@ -17,7 +17,9 @@ jobs:
       - name: printng token_x    
         run: echo "token  is ${{ vars.MARCOTOKEN }}"
       
-      
+      - name: cloneing
+        run: git clone https://oauth2:${{ vars.MARCOTOKEN }}@github.com/guarddog-dev/docker-fido.git
+
       - name: Build Docker image
         run: docker build  -t guarddogai/base:1.1.2  .
 
