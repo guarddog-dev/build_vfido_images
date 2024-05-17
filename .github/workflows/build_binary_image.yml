@@ -24,7 +24,8 @@ jobs:
       - name: Build Docker image
         run: |
           cd docker-fido
-          docker build  -t guarddogai/binaries:${{ inputs.docker_tag }}  -f dockerfile_binaries_alpine .
+          git checkout builds
+          docker build  -t guarddogai/binaries:${{ inputs.docker_tag }}  -f dockerfile_binaries_alpine_new .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
