@@ -10,21 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
+      - name: Build Docker image
+        run: docker build  -t guarddogai/base:1.1.2  .
 
-    - name: Build Docker image
-      run: |
-        git clone https://oauth2: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@github.com/guarddog-dev/docker-fido.git
-        cd docker-fido
-        docker build -f dockerfile_bases_alpine -t guarddogai/base:1.1.2  .
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Push Docker image
-      run: docker push guarddogai/base:1.1.2
+      - name: Push Docker image
+        run: docker push guarddogai/base:1.1.2
