@@ -3,7 +3,10 @@ name: Build base vfido image
 on:
   workflow_dispatch:
     inputs:
-      dockcer_tag:
+      branch:
+        required: true
+        default: develop
+      docker_tag:
         required: true
         default: 1.1.*
       environment:
@@ -24,8 +27,8 @@ jobs:
       - name: Build Docker image
         run: |
           cd docker-fido
-          git checkout builds
-          docker build  -t guarddogai/base:${{ inputs.dockcer_tag }}  -f dockerfile_bases_alpine .
+          git checkout ${{ inputs.branch }}
+          docker build  -t guarddogai/base:${{ inputs.docker_tag }}  -f dockerfile_bases_alpine .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -34,5 +37,5 @@ jobs:
           password: ${{ vars.DOCKERPASS }}
 
       - name: Push Docker image
-        run: docker push guarddogai/base:${{ inputs.dockcer_tag }}
+        run: docker push guarddogai/base:${{ inputs.docker_tag }}
 
