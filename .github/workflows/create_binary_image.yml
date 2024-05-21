@@ -1,4 +1,4 @@
-name: Build binary image
+name: Create binary image
 
 on:
   workflow_dispatch:
