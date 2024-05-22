@@ -33,7 +33,7 @@ jobs:
         run: |
           cd docker-fido
           git checkout ${{ inputs.branch }}
-          docker build  -t guarddogai/binaries:${{ inputs.new_docker_tag }}  -f dockerfile_binaries_alpine_new .
+          docker build  -t guarddogai/binaries:${{ inputs.new_docker_tag }}  -f dockerfile_binaries_alpine .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
