@@ -40,8 +40,8 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - run:  | 
-            echo "docker://guarddogai/binaries:" ${{ inputs.docker_tag }}
-            echo "repo docker_binaries_:" ${{ inputs.docker_binaries_for }}
+            echo "docker://guarddogai/binaries:" ${{ github.event.inputs.docker_tag }}
+            echo "repo docker_binaries_:" ${{ github.event.inputs.docker_binaries_for }}
 
 
 
