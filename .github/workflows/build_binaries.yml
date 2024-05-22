@@ -17,7 +17,9 @@ on:
       environment:
         type: environment
       notify:
-        type: environment
+       required: true
+       type: boolean
+       default: true
         
       
 jobs:
