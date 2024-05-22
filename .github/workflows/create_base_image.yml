@@ -6,7 +6,7 @@ on:
       branch:
         required: true
         default: develop
-      docker_tag:
+      new_docker_tag:
         required: true
         default: 1.1.*
       environment:
@@ -20,7 +20,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
+      - name: Printig variables
+        run:  | 
+          echo "BRANCH:" ${{ inputs.branch }}
+          echo "NEW_DOCKER_TAG:" ${{ inputs.new_docker_tag }}
+          
       - name: cloneing
         run: git clone https://oauth2:${{ vars.MARCOTOKEN }}@github.com/guarddog-dev/docker-fido.git
 
@@ -28,7 +33,7 @@ jobs:
         run: |
           cd docker-fido
           git checkout ${{ inputs.branch }}
-          docker build  -t guarddogai/base:${{ inputs.docker_tag }}  -f dockerfile_bases_alpine .
+          docker build  -t guarddogai/base:${{ inputs.new_docker_tag }}  -f dockerfile_bases_alpine .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -37,5 +42,5 @@ jobs:
           password: ${{ vars.DOCKERPASS }}
 
       - name: Push Docker image
-        run: docker push guarddogai/base:${{ inputs.docker_tag }}
+        run: docker push guarddogai/base:${{ inputs.new_docker_tag }}
 
