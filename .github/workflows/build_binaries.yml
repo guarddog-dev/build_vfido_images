@@ -26,13 +26,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Printing variables
-      run: | 
-        echo "guarddogai/binaries:"${{ inputs.docker_tag }}
-        echo "docker_binaries_${{ inputs.docker_binaries_for }}
+    - name: prinytis
+      run: echo "aaaa${{ inputs.docker_tag }}aaa"
         
     - name: Build Binaries for vfido
-      uses: docker://guarddogai/binaries:${{ inputs.docker_tag }}
+      uses: docker://guarddogai/binaries:1.1.1
       with:
         args: docker_binaries_${{ inputs.docker_binaries_for }} -it --name binaries 
 
