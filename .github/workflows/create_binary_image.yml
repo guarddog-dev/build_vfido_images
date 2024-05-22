@@ -11,8 +11,12 @@ on:
         default: 1.1.*
       environment:
         type: environment
-  
+
 jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    name: "Values [BRANCH: ${{ github.event.inputs.branch }}] [DOCKER_TAG: ${{ github.event.inputs.new_docker_tag }}]"
+    
   build-and-push:
     runs-on: ubuntu-latest
     environment: DEV
