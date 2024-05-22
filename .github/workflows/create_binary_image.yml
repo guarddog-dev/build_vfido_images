@@ -20,7 +20,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+        
+      - name: Printig variables
+        run:  | 
+          echo "BRANCH:" ${{ inputs.branch }}
+          echo "NEW_DOCKER_TAG:" ${{ inputs.new_docker_tag }}
+        
       - name: cloneing
         run: git clone https://oauth2:${{ vars.MARCOTOKEN }}@github.com/guarddog-dev/docker-fido.git
 
