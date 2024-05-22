@@ -18,7 +18,7 @@ on:
         type: environment
 
 jobs:
-  run_docker_container:
+  run_docker_container ${{ inputs.docker_tag }}:
     runs-on: ubuntu-latest
     environment: DEV
 
