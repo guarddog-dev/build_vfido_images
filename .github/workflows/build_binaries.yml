@@ -14,26 +14,26 @@ on:
         - dev
         - prod
         - demo
+      environment:
+        type: environment
 
-        
-      
 jobs:
-  building_binaries:
+  run_docker_container:
     runs-on: ubuntu-latest
     environment: DEV
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
-    - name: Printing variables
-      run:  | 
-            echo "docker://guarddogai/binaries:" ${{ github.event.inputs.docker_tag }}
-            echo "repo docker_binaries_:" ${{ github.event.inputs.docker_binaries_for }}
 
+    - name: Printing variables
+      run: | 
+        echo "guarddogai/binaries:"${{ inputs.docker_tag }}
+        echo "docker_binaries_${{ inputs.docker_binaries_for }}
+        
     - name: Build Binaries for vfido
       uses: docker://guarddogai/binaries:${{ inputs.docker_tag }}
       with:
-        args: docker_binaries_${{ inputs.docker_binaries_for }} -it --name binaries
+        args: docker_binaries_${{ inputs.docker_binaries_for }} -it --name binaries 
 
-  
+
