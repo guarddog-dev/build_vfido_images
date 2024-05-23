@@ -31,6 +31,11 @@ jobs:
 
     - name: prinytis
       run: echo "aaaa${{ inputs.docker_tag }}aaa"
+    - name: Printig variables
+      run: | 
+          echo "docker_binaries_for:" ${{ inputs.docker_binaries_for }}
+          echo "docker_tag:" ${{ inputs.docker_tag }}
+          echo "docker_fido_branch:" ${{ inputs.docker_fido_branch }}
         
     - name: Build Binaries for vfido
       uses: docker://guarddogai/binaries:1.1.1
