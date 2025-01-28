@@ -1,4 +1,4 @@
-name: Build Binaries
+name: Compile Binaries
 
 on:
   workflow_dispatch:
@@ -27,34 +27,34 @@ jobs:
     steps:
       # Paso 1: Checkout del repositorio
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Paso 2: Imprimir argumentos
       - name: Docker arguments
-        run: echo "Image Tag: ${{ github.event.inputs.image_tag }}"
+        run: echo "Image Tag: ${{ inputs.image_tag }}"
 
       - name: Printing variables
         run: |
-          echo "Image Tag: ${{ github.event.inputs.image_tag }}"
-          echo "Branch: ${{ github.event.inputs.branch }}"
-          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Image Tag: ${{ inputs.image_tag }}"
+          echo "Branch: ${{ inputs.branch }}"
+          echo "Environment: ${{ inputs.environment }}"
 
       # Paso 3: Procesar los servicios
       - name: Process Services Input
         id: process_services
         run: |
-          if [[ "${{ github.event.inputs.services }}" == "--all" ]]; then
+          if [[ "${{ inputs.services }}" == "--all" ]]; then
             echo "Running all services"
             echo "SERVICES=all" >> $GITHUB_ENV
           else
-            echo "Running specific services: ${{ github.event.inputs.services }}"
-            echo "SERVICES=${{ github.event.inputs.services }}" >> $GITHUB_ENV
+            echo "Running specific services: ${{ inputs.services }}"
+            echo "SERVICES=${{ services }}" >> $GITHUB_ENV
 
       # Paso 4: Levantar el contenedor con los argumentos
       - name: Run Docker Container
         run: |
           docker run -d \
             --name my-container \
-            -e BRANCH=${{ github.event.inputs.branch }} \
+            -e BRANCH=${{ inputs.branch }} \
             -e SERVICES=$SERVICES \
-            guarddogai/binaries:${{ github.event.inputs.image_tag }}
+            guarddogai/binaries:${{ inputs.image_tag }}
