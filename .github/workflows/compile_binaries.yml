@@ -14,7 +14,7 @@ on:
       services:
         description: 'Services to run (comma-separated or --all)'
         required: true
-        default: '--all'
+        default: 'all'
       environment:
         description: 'Environment to deploy to'
         required: false
