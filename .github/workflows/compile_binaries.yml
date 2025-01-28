@@ -12,7 +12,7 @@ on:
         required: true
         default: "develop"
       services:
-        description: 'Services to run (comma-separated or --all)'
+        description: 'Services to run (comma-separated or all)'
         required: true
         default: 'all'
       environment:
