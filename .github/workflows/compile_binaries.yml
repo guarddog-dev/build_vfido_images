@@ -47,4 +47,4 @@ jobs:
             --rm \
             --name my-container \
             -e BRANCH=${{ inputs.branch }} \
-            guarddogai/binaries:${{ inputs.image_tag }} --services=${{inputs.services}}
+            guarddogai/binaries:${{ inputs.image_tag }} xxx --services=${{inputs.services}}
