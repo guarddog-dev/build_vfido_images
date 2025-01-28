@@ -6,7 +6,7 @@ on:
       image_tag:
         description: 'Docker image tag'
         required: true
-        default: "1.1.1"
+        default: "1.1.2"
       branch:
         description: 'Branch to build binaries for'
         required: true
@@ -49,7 +49,7 @@ jobs:
             echo "SERVICES=all" >> $GITHUB_ENV
           else
             echo "Running specific services: ${{ inputs.services }}"
-            echo "SERVICES=${{ services }}" >> $GITHUB_ENV
+            echo "SERVICES=${{ inputs.services }}" >> $GITHUB_ENV
 
       # Paso 4: Levantar el contenedor con los argumentos
       - name: Run Docker Container
