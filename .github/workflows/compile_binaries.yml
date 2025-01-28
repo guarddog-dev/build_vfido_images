@@ -31,7 +31,8 @@ jobs:
 
       # Paso 2: Imprimir argumentos
       - name: Docker arguments
-        run: echo "Image Tag: ${{ inputs.image_tag }}"
+        run: |
+         echo "Image Tag: ${{ inputs.image_tag }}"
 
       - name: Printing variables
         run: |
