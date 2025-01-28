@@ -40,21 +40,10 @@ jobs:
           echo "Branch: ${{ inputs.branch }}"
           echo "Environment: ${{ inputs.environment }}"
 
-      # Paso 3: Procesar los servicios
-      #- name: Process Services Input
-      #  id: process_services
-      #  run: |
-      #    if [[ "${{ inputs.services }}" == "--all" ]]; then
-      #      echo "Running all services"
-      #      echo "SERVICES=all" >> $GITHUB_ENV
-      #    else
-      #      echo "Running specific services: ${{ inputs.services }}"
-      #      echo "SERVICES=${{ inputs.services }}" >> $GITHUB_ENV
-
       # Paso 4: Levantar el contenedor con los argumentos
       - name: Run Docker Container
         run: |
-          docker run -d \
+          docker run -it \
             --name my-container \
             -e BRANCH=${{ inputs.branch }} \
             guarddogai/binaries:${{ inputs.image_tag }} --services=${{inputs.services}}
