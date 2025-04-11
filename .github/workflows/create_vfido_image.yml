@@ -34,7 +34,7 @@ jobs:
         run: |
           cd docker-fido
           git checkout ${{ inputs.branch }}
-          docker build  -t guarddogai/vfido:${{ inputs.new_docker_tag }}  -f dockerfile_prod_alpine .
+          docker build  -t guarddogai/dev:${{ inputs.new_docker_tag }}  -f dockerfile_prod_alpine .
 
       - name: Push Docker image
         run: docker push guarddogai/vfido:${{ inputs.new_docker_tag }}
