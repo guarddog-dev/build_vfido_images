@@ -20,21 +20,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: cloneing
         run: git clone https://oauth2:${{ vars.MARCOTOKEN }}@github.com/guarddog-dev/docker-fido.git
-
-      - name: Build Docker image
-        run: |
-          cd docker-fido
-          git checkout ${{ inputs.branch }}
-          docker build  -t guarddogai/vfido:${{ inputs.new_docker_tag }}  -f dockerfile_prod_alpine .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d
         with:
           username: ${{ vars.DOKCERNAME }}
           password: ${{ vars.DOCKERPASS }}
+          
+      - name: Build Docker image
+        run: |
+          cd docker-fido
+          git checkout ${{ inputs.branch }}
+          docker build  -t guarddogai/vfido:${{ inputs.new_docker_tag }}  -f dockerfile_prod_alpine .
 
       - name: Push Docker image
         run: docker push guarddogai/vfido:${{ inputs.new_docker_tag }}
