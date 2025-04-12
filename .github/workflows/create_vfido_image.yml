@@ -1,4 +1,4 @@
-prodname: Create dev fido image
+name: Create dev fido image
 
 on:
   workflow_dispatch:
