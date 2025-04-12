@@ -42,4 +42,4 @@ jobs:
           docker build --build-arg BASETAG=${{ inputs.base_image_tag }}   -t guarddogai/prod:${{ inputs.new_docker_tag }}  -f dockerfile_prod_alpine .
 
       - name: Push Docker image
-        run: docker push guarddogai/dev:${{ inputs.new_docker_tag }}
+        run: docker push guarddogai/prod:${{ inputs.new_docker_tag }}
