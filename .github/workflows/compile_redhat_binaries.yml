@@ -1,4 +1,4 @@
-name: Compile RedHat Binaries 
+name: Compile Binaries
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       image_tag:
         description: 'Docker image tag'
         required: true
-        default: "latest"
+        default: "1.1.35"
       branch:
         description: 'Branch to build binaries for'
         required: true
@@ -15,6 +15,10 @@ on:
         description: 'Services to run (comma-separated or all)'
         required: true
         default: 'all'
+      githubtoken:
+          description: 'github token'
+          required: true
+          default: 'XXXXXX'
       environment:
         description: 'Environment to deploy to'
         required: false
@@ -39,6 +43,7 @@ jobs:
           echo "Image Tag: ${{ inputs.image_tag }}"
           echo "Branch: ${{ inputs.branch }}"
           echo "Environment: ${{ inputs.environment }}"
+          echo "Environment: ${{ inputs.environment }}"
 
       # Paso 4: Levantar el contenedor con los argumentos
       - name: Run Docker Container
@@ -47,4 +52,5 @@ jobs:
             --rm \
             --name my-container \
             -e BRANCH=${{ inputs.branch }} \
+            -e GITTOKEN=${{ inputs.githubtoken }} \
             guarddogai/binaries:${{ inputs.image_tag }} xxx --services=${{inputs.services}}
