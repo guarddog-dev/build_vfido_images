@@ -1,4 +1,4 @@
-name: Compile Binaries
+name: Compile Redhat Binaries
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       image_tag:
         description: 'Docker image tag'
         required: true
-        default: "1.1.35"
+        default: "latest"
       branch:
         description: 'Branch to build binaries for'
         required: true
