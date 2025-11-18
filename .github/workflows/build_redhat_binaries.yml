@@ -1,45 +1,65 @@
-name: Build Redhat Binaries
+name: Compile Redhat Binaries
 
 on:
   workflow_dispatch:
     inputs:
-      docker_tag:
+      image_tag:
+        description: 'Docker image tag'
         required: true
-        default: "1.1.1"
-      docker_fido_branch:
+        default: "latest"
+      branch:
+        description: 'Branch to build binaries for'
         required: true
         default: "develop"
-      docker_binaries_for:
+      services:
+        description: 'Services to run (comma-separated or all)'
         required: true
-        default: dev
-        type: choice
-        options:
-        - dev
-        - prod
-        - demo
+        default: 'all'
+      githubtoken:
+          description: 'github token'
+          required: true
+          default: 'XXXXXX'
+      docker_binaries_for:
+          description: 'Prod or Dev repo'
+          required: true
+          default: dev
+          type: choice
+          options:
+          - dev
+          - prod
       environment:
-        type: environment
+        description: 'Environment to deploy to'
+        required: false
+        default: 'DEV'
 
 jobs:
   run_docker_container:
     runs-on: ubuntu-latest
-    environment: DEV
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      # Paso 1: Checkout del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: prinytis
-      run: echo "aaaa${{ inputs.docker_tag }}aaa"
-    - name: Printig variables
-      run: | 
-          echo "docker_binaries_for:" ${{ inputs.docker_binaries_for }}
-          echo "docker_tag:" ${{ inputs.docker_tag }}
-          echo "docker_fido_branch:" ${{ inputs.docker_fido_branch }}
-        
-    - name: Build Binaries for vfido
-      uses: docker://guarddogai/binaries:1.1.1
-      with:
-        args: docker_binaries_${{ inputs.docker_binaries_for }}  ${{ inputs.docker_fido_branch }}  -it --name binaries 
+      # Paso 2: Imprimir argumentos
+      - name: Docker arguments
+        run: |
+         echo "Image Tag: ${{ inputs.image_tag }}"
 
+      - name: Printing variables
+        run: |
+          echo "Image Tag: ${{ inputs.image_tag }}"
+          echo "Branch: ${{ inputs.branch }}"
+          echo "Environment: ${{ inputs.environment }}"
+          echo "Docker binaries: ${{ inputs.docker_binaries_for }}"
 
+      # Paso 4: Levantar el contenedor con los argumentos
+      - name: Run Docker Container
+        run: |
+          docker run -a stdout -a stderr \
+            --rm \
+            --name my-container \
+            -e BRANCH=${{ inputs.branch }} \
+            -e GITTOKEN=${{ inputs.githubtoken }} \
+            -e ENV=${{ inputs.docker_binaries_for }} \
+            guarddogai/binaries:${{ inputs.image_tag }} xxx --services=${{inputs.services}}
