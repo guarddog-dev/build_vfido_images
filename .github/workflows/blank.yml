@@ -1,0 +1,50 @@
+name: Compile RedHat Binaries 
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Docker image tag'
+        required: true
+        default: "latest"
+      branch:
+        description: 'Branch to build binaries for'
+        required: true
+        default: "develop"
+      services:
+        description: 'Services to run (comma-separated or all)'
+        required: true
+        default: 'all'
+      environment:
+        description: 'Environment to deploy to'
+        required: false
+        default: 'DEV'
+
+jobs:
+  run_docker_container:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Checkout del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Paso 2: Imprimir argumentos
+      - name: Docker arguments
+        run: |
+         echo "Image Tag: ${{ inputs.image_tag }}"
+
+      - name: Printing variables
+        run: |
+          echo "Image Tag: ${{ inputs.image_tag }}"
+          echo "Branch: ${{ inputs.branch }}"
+          echo "Environment: ${{ inputs.environment }}"
+
+      # Paso 4: Levantar el contenedor con los argumentos
+      - name: Run Docker Container
+        run: |
+          docker run -a stdout -a stderr \
+            --rm \
+            --name my-container \
+            -e BRANCH=${{ inputs.branch }} \
+            guarddogai/binaries:${{ inputs.image_tag }} xxx --services=${{inputs.services}}
