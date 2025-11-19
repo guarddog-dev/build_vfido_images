@@ -1,4 +1,4 @@
-name: Compile Redhat Binaries
+name: Compile s
 
 on:
   workflow_dispatch:
