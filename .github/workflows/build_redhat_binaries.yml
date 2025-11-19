@@ -27,10 +27,10 @@ on:
           options:
           - dev
           - prod
-      environment:
-        description: 'Environment to deploy to'
+      credentials:
+        description: 'Repo config - docker credentials'
         required: false
-        default: 'DEV'
+        default: 'DOCKERCRE'
 
 jobs:
   run_docker_container:
@@ -50,7 +50,7 @@ jobs:
         run: |
           echo "Image Tag: ${{ inputs.image_tag }}"
           echo "Branch: ${{ inputs.branch }}"
-          echo "Environment: ${{ inputs.environment }}"
+          echo "Credentials: ${{ inputs.credentials }}"
           echo "Docker binaries: ${{ inputs.docker_binaries_for }}"
 
       # Paso 4: Levantar el contenedor con los argumentos
