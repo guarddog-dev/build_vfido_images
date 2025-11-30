@@ -50,6 +50,7 @@ jobs:
         run: |
           echo "Image Tag: ${{ inputs.image_tag }}"
           echo "Branch: ${{ inputs.branch }}"
+          echo "Services: ${{ inputs.services }}"
           echo "Credentials: ${{ inputs.credentials }}"
           echo "Docker binaries: ${{ inputs.docker_binaries_for }}"
 
