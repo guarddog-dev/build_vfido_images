@@ -64,4 +64,4 @@ jobs:
             -e GITTOKEN=${{ inputs.githubtoken }} \
             -e ENV=${{ inputs.docker_binaries_for }} \
             -e SERVICES=${{ inputs.services }} \
-            guarddogai/binaries:${{ inputs.image_tag }}}
+            guarddogai/binaries:${{ inputs.image_tag }}
